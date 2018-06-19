@@ -6,11 +6,15 @@ public function __construct()
         $this->load->database();
     } // __construct
   
-    public function retournerAdherent($pNoAdherent)
+    public function retournerAdherent($pNoAdherent=FALSE)
     {
-        $requete = $this->db->get_where('ADHERENT',array('NUMEROADHERENT'=>$pNoAdherent));
-        return $requete->row(); // retour d'une seule ligne !
-        // retour sous forme d'objets
+        if ($pNoAdherent==FALSE)
+        {
+            $requete = $this->db->get('ADHERENT');
+            return $requete->result_array();
+        }// retour d'un tableau associatif
+            $requete = $this->db->get_where('ADHERENT',array('NUMEROADHERENT'=>$pNoAdherent));
+            return $requete->row(); // retour d'une seule ligne !
     } // retournerClient
 
     public function existe($pNoAdherent) // non utilisée retour 1 si connecté, 0 sinon
