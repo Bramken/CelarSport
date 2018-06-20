@@ -15,7 +15,7 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-responsive-md table-condensed">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">n° adherent</th>

@@ -32,26 +32,26 @@ class Responsable extends CI_Controller {
         $this->load->helper('form');           
         $DonneesInjectees['TitreDeLaPage'] = 'Se connecter';    
             $Adherent = array( // NUMEROADHERENT, MOTDEPASSE : champs de la table client   
-            'NUMEROADHERENT' => $this->input->post('txtNumeroAdherent'),   
+            'NUMEROADHERENT' => $this->input->post('txtNumeroAdherent'),  
             'MOTDEPASSE' => $this->input->post('txtMotDePasse'),   
             ); // on récupère les données du formulaire de connexion   
     
             // on va chercher le responsable correspondant au numero d'adherent et motde passe saisis   
-            $AdherentRetourne = $this->Adherent->retournerUnAdherent($Adherent);   
+            $AdherentRetourne = $this->Adherent->retournerResponsable($Adherent);   
             if (!($AdherentRetourne == null))   
             {    // on a trouvé, email et profil (droit) sont stockés en session  
                 $this->load->library('session');   
-                $this->session->numeroAdherent = $ClientRetourne->EMAIL;   
-                $this->session->autorisation = $ClientRetourne->PROFIL;  
-                $this->session->noClient = $ClientRetourne->NOCLIENT; 
-                $DonneesInjectees['Email'] = $Client['EMAIL'];   
-                $this->load->view('visiteur/connexionReussie', $DonneesInjectees);   
-                $this->load->view('templates/PiedDePage');   
+                $this->session->numeroAdherent = $AdherentRetourne->NUMEROADHERENT;   
+                $this->session->autorisation = $AdherentRetourne->CODEAUTORISATION;   
+                $DonneesInjectees['NomAdherent'] = $AdherentRetourne->NOMADHERENT;
+                $DonneesInjectees['PrenomAdherent'] = $AdherentRetourne->PRENOMADHERENT ;  
+                $this->load->view('adherent/connexionReussie', $DonneesInjectees);   
+                $this->load->view('templates/piedDePage');   
             }   
             else   
             {    // client non trouvé on renvoie le formulaire de connexion   
-                $this->load->view('visiteur/seConnecter', $DonneesInjectees);   
-                $this->load->view('templates/PiedDePage');   
+                $this->load->view('adherent/seConnecter', $DonneesInjectees);   
+                $this->load->view('templates/piedDePage');   
             }     
     }
         

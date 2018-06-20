@@ -25,21 +25,24 @@
 								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 								<a href="#" class="btn btn-primary">Go somewhere</a>
 							</div>
-					</div>
+					</div><br>
 					<div class="card bg-info">
 						<div class="card-header text-center">
 							<h6 class="card-title">Adhérents</h6>		
 						</div>
 						<div class="card-body">
-							<a class="card-link" href="<?php echo site_url('responsable/afficherLesAdherents')?>">Les adherents</a>
-							<p class="card-text">Some text inside the sixth card</p>		
+							<a class="card-link text-dark" href="<?php echo site_url('responsable/afficherLesAdherents')?>">Les adherents</a>
+							<a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUnAdherent')?>">Nouvelle Adherent</a>		
 						</div>
-					</div>
+					</div><br>
 					<div class="card bg-light">
+						<div class="card-header text-center">
+							<h6 class="card-title">Section</h6>		
+						</div>
 						<div class="card-body text-center">
 							<p class="card-text">Some text inside the fifth card</p>
 						</div>
-					</div>
+					</div><br>
 				</div>
 			</div>
 							

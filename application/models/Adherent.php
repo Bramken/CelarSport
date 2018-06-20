@@ -26,6 +26,19 @@ public function __construct()
 
     public function insererUnAdherent($pDonneesAInserer)
     {
-            return $this->db->insert('CLIENT', $pDonneesAInserer);     
+            return $this->db->insert('ADHERENT', $pDonneesAInserer);     
     } // insererUnAdherent
+
+    public function modifierUnAdherent($pDonneesAInserer,$pNoAdherent)
+    {
+        $this->db->where('NUMEROADHERENT', $pNoAdherent);
+        $this->db->update('ADHERENT', $pDonneesAInserer);   
+    } // modifierUnAdherent
+
+    public function retournerResponsable($pAdherent)
+    {
+        $requete = $this->db->get_where('ADHERENT',$pAdherent);
+        return $requete->row(); // retour d'une seule ligne !
+        // retour sous forme d'objets
+    } // retournerClient
 } // Fin Classe
