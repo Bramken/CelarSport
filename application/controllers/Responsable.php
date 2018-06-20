@@ -10,7 +10,14 @@ class Responsable extends CI_Controller {
         $this->load->model('Adherent'); // chargement modèle, obligatoire
         $this->load->view('templates/entete');
     } // __construct
- 
+
+    public function afficherAccueil()
+    {
+        $DonneesInjectees['unAdherent'] = $this->Adherent->retournerAdherent($this->session->numeroAdherent);
+        $this->load->view('adherent/accueil', $DonneesInjectees);
+        $this->load->view('templates/piedDePage');
+    }
+
     public function afficherUnAdherent($pNoAdherent) // lister tous les Produits
     {
         $DonneesInjectees['unAdherent'] = $this->Adherent->retournerAdherent($pNoAdherent);
@@ -53,6 +60,52 @@ class Responsable extends CI_Controller {
                 $this->load->view('adherent/seConnecter', $DonneesInjectees);   
                 $this->load->view('templates/piedDePage');   
             }     
+    }
+
+    public function ajouterUnAdherent()
+    {
+        $this->load->helper('form');
+        $DonneesInjectees['TitreDeLaPage'] = "S'enregistrer";
+ 
+        if ($this->input->post('BoutonAjouter'))
+        {   // formulaire non validé, on renvoie le formulaire
+            $donneesAInserer = array(
+                'CODEAUTORISATION'=> $this->input->post('txtCodeAutorisation'),
+                'NUMEROADHERENT_PARRAINER'=> $this->input->post('txtParrain'),
+                'NUMEROADHERENT_PARENT'=> $this->input->post('txtParent'),
+                'NUMEROADHERENT_SAISIR'=> $this->input->post('txtSaisiePar'),
+                'NUMEROSITUATION'=> $this->input->post('txtSituation'),
+                'NUMEROENTITE'=> $this->input->post('txtEntite'),
+                'NUMEROADHERENT_COUPLER'=> $this->input->post('txtCouple'),
+                'NOMADHERENT'=> $this->input->post('txtNom'),
+                'PRENOMADHERENT'=> $this->input->post('txtPrenom'),
+                'NOMDUSAGE'=> $this->input->post('txtNomDUsage'),
+                'DATENAISSANCE'=> $this->input->post('txtDateNaissance'),
+                'LIEUNAISSANCE'=> $this->input->post('txtLieuNaissance'),
+                'EMAILEXTERIEUR'=> $this->input->post('txtEmailExterieur'),
+                'EMAILPROFESSIONNEL'=> $this->input->post('txtEmailProfessionnel'),
+                'GENRE'=> $this->input->post('txtGenre'),
+                'NUMEROLICENSE'=> $this->input->post('txtNumeroLicense'),
+                'DATEEDITIONCARTE'=> $this->input->post('txtDateEditionCarte'),
+                'MOTDEPASSE'=> $this->input->post('txtMotDePasse'),
+                'DATEENVOIFEDERATION'=> $this->input->post('txtDateEnvoiFederation'),
+                'CODEPOSTAL'=> $this->input->post('txtCodePostal'),
+                ); // NOMADHERENT, PRENOMADHERENT, EMAILPROFESSIONNEL : champs de la table ADHERENT
+            if ($this->Adherent->insererUnAdherent($donneesAInserer)) // appel du modèle
+            {
+               // $this->load->view('visiteur/ajoutReussie'); 
+                //$this->load->view('templates/PiedDePage');  
+            }
+            else
+            {
+                //redirect('visiteur/ajouterUnClient');
+            }
+        }
+        else
+        {   
+            $this->load->view('adherent/ajouterUnAdherent', $DonneesInjectees);
+            $this->load->view('templates/piedDePage');
+        }
     }
         
 }
