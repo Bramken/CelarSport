@@ -13,39 +13,65 @@
                 </li>
             </ul>
         </div>
+        <!--<style>
+        .table-condensed{
+  font-size: 12px;
+}</style>-->
         <div class="card-body">
-            <table class="table table-responsive-md table-sm table-striped table-bordered text-center">
+            <table class="table table-sm table-responsive table-striped table-bordered text-center">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">n° adherent</th>
+                        <th scope="col">n° adherent qui a saisi</th>
                         <th scope="col">date envoi féde.</th>
                         <th scope="col">n° license</th>
                         <th scope="col">édition carte.</th>
-                        <th scope="col">Prenom</th>
-                        <th scope="col">Naissance</th>
-                        <th scope="col">Genre</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">autorisation</th>
+                        <th scope="col">n° adherent</th>
+                        <th scope="col">nom</th>
+                        <th scope="col">prenom</th>
+                        <th scope="col">date naissance</th>
+                        <th scope="col">genre</th>
+                        <th scope="col">code postal</th>
+                        <th scope="col">nom d'usage</th>
+                        <th scope="col">code autorisation</th>
+                        <th scope="col">numero origine</th>
+                        <th scope="col">numero entité</th>
+                        <th scope="col">vile naissance</th>
+                        <th scope="col">departement naissance</th>
+                        <th scope="col">telephone</th>
+                        <th scope="col">email pro.</th>
+                        <th scope="col">email ext.</th>
+                        <th scope="col">numero parrain</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($lesAdherents as $unAdherent):
                         echo '<tr>
-                        <th >'.anchor('adherent/modifierUnAdherent/'.$unAdherent['NUMEROADHERENT'],$unAdherent['NUMEROADHERENT']).'</th>
-                        <th >'.$unAdherent['DATEENVOIFEDERATION'].'</th>
-                        <th >'.$unAdherent['NUMEROLICENSE'].'</th>
-                        <th >'.$unAdherent['DATEEDITIONCARTE'].'</th>
-                        <td>'.$unAdherent['PRENOMADHERENT'].'</td>
-                        <th >'.$unAdherent['DATENAISSANCE'].'</th>
-                        <th >'.$unAdherent['GENRE'].'</th>
-                        <td>'.$unAdherent['NOMADHERENT'].'</td>
-                        <td>'.$unAdherent['CODEAUTORISATION'].'</td>
+                            <td>'.$unAdherent['NUMEROADHERENT_SAISIR'].'</td>                         
+                            <td>'.$unAdherent['DATEENVOIFEDERATION'].'</td>
+                            <td>'.$unAdherent['NUMEROLICENSE'].'</td>
+                            <td>'.$unAdherent['DATEEDITIONCARTE'].'</td>
+                            <td>'.anchor('adherent/modifierUnAdherent/'.$unAdherent['NUMEROADHERENT'],$unAdherent['NUMEROADHERENT']).'</td>
+                            <td>'.$unAdherent['NOMADHERENT'].'</td>
+                            <td>'.$unAdherent['PRENOMADHERENT'].'</td>
+                            <td>'.$unAdherent['DATENAISSANCE'].'</td>
+                            <td>'.$unAdherent['GENRE'].'</td>
+                            <td>'.$unAdherent['CODEPOSTAL'].'</td>
+                            <td>'.$unAdherent['NOMDUSAGE'].'</td>
+                            <td>'.$unAdherent['CODEAUTORISATION'].'</td>
+                            <td>'.$unAdherent['NUMEROORIGINE'].'</td>
+                            <td>'.$unAdherent['NUMEROENTITE'].'</td>
+                            <td>'.$unAdherent['VILLENAISSANCE'].'</td>
+                            <td>'.$unAdherent['DEPARTEMENTNAISSANCE'].'</td>
+                            <td>'.$unAdherent['TELEPHONE'].'</td>
+                            <td>'.$unAdherent['EMAILPROFESSIONNEL'].'</td>
+                            <td>'.$unAdherent['EMAILEXTERIEUR'].'</td>
+                            <td>'.$unAdherent['NUMEROADHERENT_PARAINNER'].'</td>
                         </tr>';
                     endforeach ?>
                 </tbody>
             </table>
         </div>
-    </div>    
+    </div> 
 </div><br>
       
 

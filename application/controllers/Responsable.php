@@ -65,32 +65,34 @@ class Responsable extends CI_Controller {
     public function ajouterUnAdherent()
     {
         $this->load->helper('form');
-        $DonneesInjectees['TitreDeLaPage'] = "S'enregistrer";
+        $DonneesInjectees['LesAdherents']=$this->Adherent->retournerAdherentDropdown();
+        $DonneesInjectees['TitreDeLaPage'] = "Ajouter un adherent";
  
         if ($this->input->post('BoutonAjouter'))
         {   // formulaire non validé, on renvoie le formulaire
             $donneesAInserer = array(
-                'CODEAUTORISATION'=> $this->input->post('txtCodeAutorisation'),
-                'NUMEROADHERENT_PARRAINER'=> $this->input->post('txtParrain'),
-                'NUMEROADHERENT_PARENT'=> $this->input->post('txtParent'),
-                'NUMEROADHERENT_SAISIR'=> $this->input->post('txtSaisiePar'),
-                'NUMEROSITUATION'=> $this->input->post('txtSituation'),
-                'NUMEROENTITE'=> $this->input->post('txtEntite'),
-                'NUMEROADHERENT_COUPLER'=> $this->input->post('txtCouple'),
-                'NOMADHERENT'=> $this->input->post('txtNom'),
-                'PRENOMADHERENT'=> $this->input->post('txtPrenom'),
-                'NOMDUSAGE'=> $this->input->post('txtNomDUsage'),
-                'DATENAISSANCE'=> $this->input->post('txtDateNaissance'),
-                'LIEUNAISSANCE'=> $this->input->post('txtLieuNaissance'),
-                'EMAILEXTERIEUR'=> $this->input->post('txtEmailExterieur'),
-                'EMAILPROFESSIONNEL'=> $this->input->post('txtEmailProfessionnel'),
-                'GENRE'=> $this->input->post('txtGenre'),
+                'DATEENVOIFEDERATION'=> $this->input->post('txtDateEnvoiFederation'),
                 'NUMEROLICENSE'=> $this->input->post('txtNumeroLicense'),
                 'DATEEDITIONCARTE'=> $this->input->post('txtDateEditionCarte'),
-                'MOTDEPASSE'=> $this->input->post('txtMotDePasse'),
-                'DATEENVOIFEDERATION'=> $this->input->post('txtDateEnvoiFederation'),
+                'NOMADHERENT'=> $this->input->post('txtNom'),
+                'PRENOMADHERENT'=> $this->input->post('txtPrenom'),
+                'DATENAISSANCE'=> $this->input->post('txtDateNaissance'),
+                'GENRE'=> $this->input->post('txtGenre'),
                 'CODEPOSTAL'=> $this->input->post('txtCodePostal'),
-                ); // NOMADHERENT, PRENOMADHERENT, EMAILPROFESSIONNEL : champs de la table ADHERENT
+                'NOMDUSAGE'=> $this->input->post('txtNomDUsage'),
+                'CODEAUTORISATION'=> $this->input->post('txtCodeAutorisation'),
+                'NUMEROSITUATION'=> $this->input->post('txtSituation'),
+                'NUMEROENTITE'=> $this->input->post('txtEntite'),
+                'VILLENAISSANCE'=> $this->input->post('txtVilleNaissance'),
+                'DEPARTEMENTNAISSANCE'=> $this->input->post('txtDepartementNaissance'),
+                'TELEPHONE'=> $this->input->post('txtTelephone'),
+                'EMAILEXTERIEUR'=> $this->input->post('txtEmailExterieur'),
+                'EMAILPROFESSIONNEL'=> $this->input->post('txtEmailProfessionnel'),
+                'NUMEROADHERENT_PARRAINER'=> $this->input->post('txtParrain'),
+                'MOTDEPASSE'=> $this->input->post('txtMotDePasse'),
+                'NUMEROADHERENT_PARENT'=> $this->input->post('txtParent'),
+                'NUMEROADHERENT_COUPLER'=> $this->input->post('txtCouple')
+            ); // NOMADHERENT, PRENOMADHERENT, EMAILPROFESSIONNEL : champs de la table ADHERENT
             if ($this->Adherent->insererUnAdherent($donneesAInserer)) // appel du modèle
             {
                // $this->load->view('visiteur/ajoutReussie'); 

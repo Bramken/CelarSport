@@ -41,4 +41,18 @@ public function __construct()
         return $requete->row(); // retour d'une seule ligne !
         // retour sous forme d'objets
     } // retournerClient
+
+    public function retournerAdherentDropdown()
+    {
+        $this->db->select('NUMEROADHERENT,NOMADHERENT,PRENOMADHERENT'); 
+        $this->db->from('ADHERENT');
+        $query=$this->db->get();
+        $results=$query->result_array();
+        foreach($results as $UneLigne):
+            {
+                $results['AfficherAdherents']=$UneLigne['NOMADHERENT'].['NUMEROADHERENT'];
+            } 
+        endforeach;
+        return array_column($results,'AfficherAdherents','NUMEROADHERENT');
+    }
 } // Fin Classe

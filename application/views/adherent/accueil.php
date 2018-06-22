@@ -17,18 +17,29 @@
 				<div class="card-body">
                     <ul>
                         <li><a class="card-link text-dark" href="<?php echo site_url('responsable/afficherLesAdherents')?>">Les adherents</a></li>
-                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUnAdherent')?>">Nouvelle Adherent</a></li>
+                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUnAdherent')?>">Nouvel Adherent</a></li>
                     </ul>
 				</div>
 			</div><br>
-			<div class="card bg-primary">
+			<div class="card bg-yellow">
 				<div class="card-header text-center">
 					<h6 class="card-title">Section</h6>		
 				</div>
-				<div class="card-body text-center">
+				<div class="card-body">
                     <ul>
                         <li><a class="card-link text-dark" href="<?php echo site_url('responsable/afficherLesAdherents')?>">Les sections</a></li>
                         <li><a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUnAdherent')?>">Nouvelle section</a></li>
+                    </ul>
+				</div>
+            </div><br>
+            <div class="card bg-maroon">
+				<div class="card-header text-center">
+					<h6 class="card-title">Autre</h6>		
+				</div>
+				<div class="card-body">
+                    <ul>
+                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/afficherLesAdherents')?>">Situations</a></li>
+                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUnAdherent')?>">Evenements</a></li>
                     </ul>
 				</div>
 			</div><br>
