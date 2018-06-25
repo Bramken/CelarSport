@@ -81,7 +81,7 @@ class Responsable extends CI_Controller {
                 'CODEPOSTAL'=> $this->input->post('txtCodePostal'),
                 'NOMDUSAGE'=> $this->input->post('txtNomDUsage'),
                 'CODEAUTORISATION'=> $this->input->post('txtCodeAutorisation'),
-                'NUMEROSITUATION'=> $this->input->post('txtSituation'),
+                'NUMEROORIGINE'=> $this->input->post('txtOrigine'),
                 'NUMEROENTITE'=> $this->input->post('txtEntite'),
                 'VILLENAISSANCE'=> $this->input->post('txtVilleNaissance'),
                 'DEPARTEMENTNAISSANCE'=> $this->input->post('txtDepartementNaissance'),
@@ -91,7 +91,8 @@ class Responsable extends CI_Controller {
                 'NUMEROADHERENT_PARRAINER'=> $this->input->post('txtParrain'),
                 'MOTDEPASSE'=> $this->input->post('txtMotDePasse'),
                 'NUMEROADHERENT_PARENT'=> $this->input->post('txtParent'),
-                'NUMEROADHERENT_COUPLER'=> $this->input->post('txtCouple')
+                'NUMEROADHERENT_COUPLER'=> $this->input->post('txtCouple'),
+                'NUMEROCLUB'=> $this->input->post('txtClubOrigine')
             ); // NOMADHERENT, PRENOMADHERENT, EMAILPROFESSIONNEL : champs de la table ADHERENT
             if ($this->Adherent->insererUnAdherent($donneesAInserer)) // appel du modèle
             {

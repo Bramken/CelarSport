@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">>
     <div class="card text-center">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
@@ -50,7 +50,7 @@
                             <td>'.$unAdherent['DATEENVOIFEDERATION'].'</td>
                             <td>'.$unAdherent['NUMEROLICENSE'].'</td>
                             <td>'.$unAdherent['DATEEDITIONCARTE'].'</td>
-                            <td>'.anchor('adherent/modifierUnAdherent/'.$unAdherent['NUMEROADHERENT'],$unAdherent['NUMEROADHERENT']).'</td>
+                            <td>'.anchor('responsable/afficherUnAdherent/'.$unAdherent['NUMEROADHERENT'],$unAdherent['NUMEROADHERENT']).'</td>
                             <td>'.$unAdherent['NOMADHERENT'].'</td>
                             <td>'.$unAdherent['PRENOMADHERENT'].'</td>
                             <td>'.$unAdherent['DATENAISSANCE'].'</td>
