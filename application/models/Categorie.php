@@ -1,21 +1,12 @@
 <?php
-class Section extends CI_Model 
+class Categorie extends CI_Model 
 {
 public function __construct()
     {
         $this->load->database();
     } // __construct
 
-    public function insererSection($pDonneesAInserer)
-    {
-        return $this->db->insert('SECTION', $pDonneesAInserer);  
-    }
-    public function modifierSection($pDonneesAInserer,$pNoSection)
-    {
-        $this->db->where('NUMEROSECTION', $pNoSection);
-        $this->db->update('SECTION', $pDonneesAInserer);
-    }
-    public function retournerSectionDropDown()
+public function retournerCategorieDropDown()
     {
         $this->db->select('NUMEROCATEGORIE,LIBELLECATEGORIE'); 
         $this->db->from('CATEGORIE');

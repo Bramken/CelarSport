@@ -49,13 +49,13 @@ public function __construct()
         $query=$this->db->get();
         $results=$query->result_array();
         $i=0;
-        foreach($results as $UneLigne):
+        /*foreach($results as $UneLigne):
             {
                 $autre[$i]['nomPrenomAdherent']=$UneLigne['NUMEROADHERENT']." ".$UneLigne['NOMADHERENT']." ".$UneLigne['PRENOMADHERENT'];
                 $autre[$i]['numeroAdherent']=$UneLigne['NUMEROADHERENT'];
                 $i=$i+1;
             } 
-        endforeach;
+        endforeach;*/
         return $results;/*array_column($autre,'nomPrenomAdherent','numeroAdherent');*/
     }
 } // Fin Classe
