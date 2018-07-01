@@ -4,17 +4,21 @@
             <h6 class="card-title"><?php echo $TitreDeLaPage ;?></h6>		
         </div>
         <div class="card-body text-center">
-            <?php echo form_open('responsable/ajouterUneSection',array('class' => 'form-control-sm')) ?>
+            <?php echo form_open('administrateur/ajouterUneSection',array('class' => 'form-control-sm')) ?>
 
                 <label for="txtCategorie">Categorie</label>
                 <input class="form-control" list="categories" type="text" name="txtCategorie" value="<?php echo set_value('txtCategorie'); ?>"><br/>
 
                 <label for="txtSection">Libelle section</label>
                 <input class="form-control" type="text" name="txtSection" value="<?php echo set_value('txtSection'); ?>"><br/>
+
+                <label for="txtCodeFederation">Code féderation</label>
+                <input class= "form-control" list="codesfederation" name="txtCodeFederation" value="<?php echo set_value('txtCodeFederation'); ?>" /><br/>
+
                 
                 <datalist id="adherents">
                     <?php foreach ($LesAdherents as $UnAdherent):
-                        echo '<option value="'.$UnAdherent['NUMEROADHERENT'].'">'.$UnAdherent['NOMADHERENT']." ".$UnAdherent['PRENOMADHERENT'].'</option>';
+                        echo '<option value="'.$UnAdherent['NUMEROADHERENT'].'">'.$UnAdherent['NOM']." ".$UnAdherent['PRENOM'].'</option>';
                     endforeach;?> 
                 </datalist>
 
@@ -24,7 +28,13 @@
                     endforeach;?> 
                 </datalist>
 
-                <input class="btn btn-primary" required="required" type="submit" name="BoutonAjouter" value="Valider" />
+                <datalist id="codesfederation">
+                    <?php foreach ($LesCodesFederation as $UnCodeFederation):
+                        echo '<option value="'.$UnCodeFederation['CODEFEDERATION'].'"></option>';
+                    endforeach;?> 
+                </datalist>
+
+                <input class="btn btn-success" required="required" type="submit" name="BoutonAjouter" value="Valider" />
 
             </form>
         </div>

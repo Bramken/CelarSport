@@ -1,45 +1,55 @@
 <div class="container">
 			<div class="card bg-primary">
 					<div class="card-header text-center">
-						<h6 class="card-title">Mon espace adherent</h6>
+						<div class="row">
+                			<div class="col">
+                    			<!--<a href="<?php echo site_url('responsable/modifierAdherent/'.$unAdherent->NUMEROADHERENT)?>" class="btn btn-secondary   ">Modifier</a>	-->
+               				</div>
+                			<div class="col">
+                    			<h6 class="card-title text-center"><?php echo $TitreDeLaPage ;?></h6>		
+                			</div>
+                			<div class="col">
+								<a href="<?php echo site_url('visiteur/seDeConnecter'); ?>" class="btn btn-danger">Se deconnecter</a>
+               				</div>
+            			</div>    
 					</div>
 					<div class="card-body">
 						<p class="card-text">Numero d'adherent : <?php echo $unAdherent->NUMEROADHERENT;?></p>
-                        <p class="card-text">Nom : <?php echo $unAdherent->NOMADHERENT;?></p>
-                        <p class="card-text">Prenom : <?php echo $unAdherent->PRENOMADHERENT;?></p>
-						<a href="<?php echo site_url('responsable/modifierAdherent')?>" class="btn btn-secondary">Modifier</a>
+                        <p class="card-text">Nom : <?php echo $unAdherent->NOM;?></p>
+                        <p class="card-text">Prenom : <?php echo $unAdherent->PRENOM;?></p>
+						<a href="<?php echo site_url('responsable/modifierAdherent/'.$unAdherent->NUMEROADHERENT)?>" class="btn btn-secondary">Modifier</a>
 					</div>
 			</div><br>
-			<div class="card bg-orange">
+			<div class="card bg-primary">
 				<div class="card-header text-center">
 					<h6 class="card-title">Adhérents</h6>		
 				</div>
 				<div class="card-body">
                     <ul>
                         <li><a class="card-link text-dark" href="<?php echo site_url('responsable/afficherLesAdherents')?>">Les adherents</a></li>
-                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUnAdherent')?>">Nouvel Adherent</a></li>
+                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUnAdherent')?>">Nouvel adherent</a></li>
                     </ul>
 				</div>
 			</div><br>
-			<div class="card bg-yellow">
+			<div class="card bg-primary">
 				<div class="card-header text-center">
 					<h6 class="card-title">Section</h6>		
 				</div>
 				<div class="card-body">
                     <ul>
-                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/afficherLesAdherents')?>">Les sections</a></li>
-                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUneSection')?>">Nouvelle section</a></li>
+                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/afficherLesSections')?>">Les sections</a></li>
+                        <li><a class="card-link text-dark" href="<?php echo site_url('administrateur/ajouterUneSection')?>">Nouvel section</a></li>
                     </ul>
 				</div>
             </div><br>
-            <div class="card bg-maroon">
+            <div class="card bg-primary">
 				<div class="card-header text-center">
-					<h6 class="card-title">Autre</h6>		
+					<h6 class="card-title">Adhérent temporaire</h6>		
 				</div>
 				<div class="card-body">
                     <ul>
-                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/afficherLesAdherents')?>">Situations</a></li>
-                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUnAdherent')?>">Evenements</a></li>
+                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/afficherLesAdherentsTemporaire')?>">Afficher les adhérent temporaire</a></li>
+                        <li><a class="card-link text-dark" href="<?php echo site_url('responsable/ajouterUnAdherentTemporaire')?>">Nouvel adhérent temporaire</a></li>
                     </ul>
 				</div>
 			</div><br>

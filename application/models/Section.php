@@ -1,7 +1,7 @@
 <?php
 class Section extends CI_Model 
 {
-public function __construct()
+    public function __construct()
     {
         $this->load->database();
     } // __construct
@@ -15,20 +15,26 @@ public function __construct()
         $this->db->where('NUMEROSECTION', $pNoSection);
         $this->db->update('SECTION', $pDonneesAInserer);
     }
-    public function retournerSectionDropDown()
+    public function retournerSection($pNoSection=FALSE)
     {
-        $this->db->select('NUMEROCATEGORIE,LIBELLECATEGORIE'); 
-        $this->db->from('CATEGORIE');
-        $query=$this->db->get();
-        $results=$query->result_array();
-        $i=0;
-        /*foreach($results as $UneLigne):
-            {
-                $section[$i]['nomPrenomAdherent']=$UneLigne['NUMEROADHERENT']." ".$UneLigne['NOMADHERENT']." ".$UneLigne['PRENOMADHERENT'];
-                $section[$i]['numeroAdherent']=$UneLigne['NUMEROADHERENT'];
-                $i=$i+1;
-            } 
-        endforeach;*/
-        return $results;/*array_column($autre,'nomPrenomAdherent','numeroAdherent');*/
+        if ($pNoSection==FALSE)
+        {
+            $requete = $this->db->get('SECTION');
+            return $requete->result_array();
+        }// retour d'un tableau associatif
+            $requete = $this->db->get_where('SECTION',array('NUMEROSECTION'=>$pNoSection));
+            return $requete->row(); // retour d'une seule ligne !
     }
+
+    public function retournerSectionAfficher()
+    {
+        $requete = $this->db->query("SELECT `NUMEROSECTION`, `LIBELLECATEGORIE`, `LIBELLESECTION`, `CODEFEDERATION` FROM section sec LEFT OUTER JOIN categorie cat ON (sec.NUMEROCATEGORIE = cat.numerocategorie) ORDER BY NUMEROSECTION ASC");
+        return $requete->result_array();
+    }
+
+    public function retournerCodeFederation()
+    {
+        $requete = $this->db->query("SELECT DISTINCT(`CODEFEDERATION`) from `section` ORDER BY CODEFEDERATION ASC");
+        return $requete->result_array(); 
+    } 
 }

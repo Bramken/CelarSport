@@ -41,6 +41,7 @@
                         <th scope="col">email pro.</th>
                         <th scope="col">email ext.</th>
                         <th scope="col">numero parrain</th>
+                        <th scope="col">mot de passe</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,13 +52,13 @@
                             <td>'.$unAdherent['NUMEROLICENSE'].'</td>
                             <td>'.$unAdherent['DATEEDITIONCARTE'].'</td>
                             <td>'.anchor('responsable/afficherUnAdherent/'.$unAdherent['NUMEROADHERENT'],$unAdherent['NUMEROADHERENT']).'</td>
-                            <td>'.$unAdherent['NOMADHERENT'].'</td>
-                            <td>'.$unAdherent['PRENOMADHERENT'].'</td>
+                            <td>'.$unAdherent['NOM'].'</td>
+                            <td>'.$unAdherent['PRENOM'].'</td>
                             <td>'.$unAdherent['DATENAISSANCE'].'</td>
                             <td>'.$unAdherent['GENRE'].'</td>
                             <td>'.$unAdherent['CODEPOSTAL'].'</td>
                             <td>'.$unAdherent['NOMDUSAGE'].'</td>
-                            <td>'.$unAdherent['CODEAUTORISATION'].'</td>
+                            <td>'.$unAdherent['NUMEROAUTORISATION'].'</td>
                             <td>'.$unAdherent['NUMEROORIGINE'].'</td>
                             <td>'.$unAdherent['NUMEROENTITE'].'</td>
                             <td>'.$unAdherent['VILLENAISSANCE'].'</td>
@@ -65,7 +66,8 @@
                             <td>'.$unAdherent['TELEPHONE'].'</td>
                             <td>'.$unAdherent['EMAILPROFESSIONNEL'].'</td>
                             <td>'.$unAdherent['EMAILEXTERIEUR'].'</td>
-                            <td>'.$unAdherent['NUMEROADHERENT_PARAINNER'].'</td>
+                            <td>'.$unAdherent['NUMEROADHERENT_PARRAINER'].'</td>
+                            <td>'.$unAdherent['MOTDEPASSE'].'</td>
                         </tr>';
                     endforeach ?>
                 </tbody>

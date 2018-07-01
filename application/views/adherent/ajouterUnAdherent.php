@@ -12,13 +12,21 @@
                 <label for="txtNumeroLicense">Numéro de license</label>
                 <input class= "form-control" type="text" placeholder=""  name="txtNumeroLicense" value="<?php echo set_value('txtNumeroLicense'); ?>" /><br/>
 
-                <label for="txtDateEditionCarte">Lieu de naissance</label>
-                <input class= "form-control" required="required" type="text" placeholder=""  name="txtDateEditionCarte" value="<?php echo set_value('txtDateEditionCarte'); ?>" /><br/>
+                <label for="txtDateEditionCarte">Date edition carte</label>
+                <input class= "form-control" type="date" placeholder=""  name="txtDateEditionCarte" value="<?php echo set_value('txtDateEditionCarte'); ?>" /><br/>
 
-                <label for="txtNom">Nom</label>
-                <input class= "form-control" pattern="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ-]+" name="txtNom" value="<?php echo set_value('txtNom'); ?>" /><br/>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="txtNom">Nom<span class="text-danger">*</span></label>
+                        <input class= "form-control" required="required" pattern="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ-]+" name="txtNom" value="<?php echo set_value('txtNom'); ?>" /><br/>
+                    </div>
+                    <div class="col">
+                        <label for="txtNomDUsage">Nom d'usage</label>
+                        <input class= "form-control" type="input" pattern="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ-]+" name="txtNomDUsage" value="<?php echo set_value('txtNomDUsage'); ?>" /><br/>
+                    </div>
+                </div>
 
-                <label for="txtPrenom">Prénom</label>
+                <label for="txtPrenom">Prénom<span class="text-danger">*</span></label>
                 <input class= "form-control" required="required" pattern="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ-]+" name="txtPrenom" value="<?php echo set_value('txtPrenom'); ?>"></textarea><br/>
 
                 <label for="txtDateNaissance">Date de naissance</label>
@@ -33,22 +41,20 @@
                 echo form_dropdown('txtGenre', $options,'1','class="form-control" required="required"');
                 ?></br>
 
-                <label for="txtCodePostal">CodePostal</label>
+                <label for="txtCodePostal">CodePostal<span class="text-danger">*</span></label>
                 <input class= "form-control" required="required"  title="Code postal pas valide !" placeholder="ex : 35230" pattern="^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$" name="txtCodePostal" value="<?php echo set_value('txtCodePostal'); ?>" /><br/>
 
-                <label for="txtNomDUsage">Nom d'usage</label>
-                <input class= "form-control" type="input" pattern="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ-]+" name="txtNomDUsage" value="<?php echo set_value('txtNomDUsage'); ?>" /><br/>
+                <label for="txtAutorisation">Autorisations<span class="text-danger">*</span></label><br/>
+                <input class="form-control" list="autorisations" type="text" name="txtAutorisation" value="<?php echo set_value('txtAutorisation'); ?>"><br/>
 
-                <label for="txtCodeAutorisation">Code d'autorisation</label>
-                <input class= "form-control" required="required" placeholder=""  name="txtCodeAutorisation" value="<?php echo set_value('txtCodeAutorisation'); ?>" /><br/>
 
                 <label for="txtOrigine">Origine</label>
-                <input class= "form-control"  placeholder=""  name="txtOrigine" value="<?php echo set_value('txtOrigine'); ?>" /><br/>
+                <input class= "form-control"  list="origines" placeholder=""  name="txtOrigine" value="<?php echo set_value('txtOrigine'); ?>" /><br/>
 
                 <label for="txtEntite">Entité</label>
-                <input class= "form-control" placeholder=""  name="txtNumeroLicense" value="<?php echo set_value('txtNumeroLicense'); ?>" /><br/>
+                <input class= "form-control" list="entites" placeholder=""  name="txtEntite" value="<?php echo set_value('txtEntite'); ?>" /><br/>
 
-                <label for="txtVilleNaissance">Ville de naissance</label>
+                <label for="txtVilleNaissance">Ville de naissance<span class="text-danger">*</span></label>
                 <input class= "form-control" required="required" placeholder=""  name="txtVilleNaissance" value="<?php echo set_value('txtVilleNaissance'); ?>" /><br/>
 
                 <label for="txtDepartementNaissance">Departement naissance</label>
@@ -57,12 +63,16 @@
                 <label for="txtTelephone">Telephone</label>
                 <input class= "form-control" placeholder=""  name="txtTelephone" value="<?php echo set_value('txtTelephone'); ?>" /><br/>
 
-                <label for="txtEmailExterieur">Email exterieur</label>
-                <input class= "form-control" type="email" placeholder="nom@domaine.tld"  name="txtEmailExterieur" value="<?php echo set_value('txtEmailExterieur'); ?>" /><br/>
-
-                <label for="txtEmailProfessionnel">Email professionnel</label>
-                <input class= "form-control" type="email" placeholder="nom@domaine.tld"  name="txtEmailProfessionnel" value="<?php echo set_value('txtEmailProfessionnel'); ?>" /><br/>
-
+                <div class="form-row">
+                    <div class="col">
+                        <label for="txtEmailExterieur">Email exterieur</label>
+                        <input class= "form-control" type="email" placeholder="nom@domaine.tld"  name="txtEmailExterieur" value="<?php echo set_value('txtEmailExterieur'); ?>" />
+                    </div>
+                    <div class="col">
+                        <label for="txtEmailProfessionnel">Email professionnel</label>
+                        <input class= "form-control" type="email" placeholder="nom@domaine.tld"  name="txtEmailProfessionnel" value="<?php echo set_value('txtEmailProfessionnel'); ?>" /><br/>
+                    </div>
+                </div>
                 <label for="txtParrain">Adherent parrain</label>
                 <input class="form-control" list="adherents" type="text" name="txtParrain" value="<?php echo set_value('txtParrain'); ?>"><br/>
 
@@ -76,15 +86,41 @@
                 <input class="form-control" list="adherents" type="text" name="txtCouple" value="<?php echo set_value('txtCouple'); ?>"><br/>
                 
                 <label for="txtClubOrigine">Club d'origine</label>
-                <input class= "form-control" pattern="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ-]+" name="txtClubOrigine" value="<?php echo set_value('txtClubOrigine'); ?>" /><br/>
+                <input class= "form-control" list="cluborigines" name="txtClubOrigine" value="<?php echo set_value('txtClubOrigine'); ?>" /><br/>
 
                 <datalist id="adherents">
                     <?php foreach ($LesAdherents as $UnAdherent):
-                        echo '<option value="'.$UnAdherent['NUMEROADHERENT'].'">'.$UnAdherent['NOMADHERENT']." ".$UnAdherent['PRENOMADHERENT'].'</option>';
+                        echo '<option value="'.$UnAdherent['NUMEROADHERENT'].'">'.$UnAdherent['NOM']." ".$UnAdherent['PRENOM'].'</option>';
                     endforeach;?> 
                 </datalist>
 
-                <input class="btn btn-primary" required="required" placeholder="nom@domaine.tld" type="submit" name="BoutonAjouter" value="Valider" />
+                <datalist id="autorisations">
+                    <?php foreach ($Autorisations as $UneAutorisation):
+                        echo '<option value="'.$UneAutorisation['NUMEROAUTORISATION'].'">'.$UneAutorisation['LIBELLEAUTORISATION'].'</option>';
+                    endforeach;?> 
+                </datalist>
+
+                <datalist id="cluborigines">
+                    <?php foreach ($ClubOrigines as $UnClubOrigine):
+                        echo '<option value="'.$UnClubOrigine['NUMEROCLUB'].'">'.$UnClubOrigine['LIBELLECLUB'].'</option>';
+                    endforeach;?> 
+                </datalist>
+
+                <datalist id="origines">
+                    <?php foreach ($Origines as $UneOrigine):
+                        echo '<option value="'.$UneOrigine['NUMEROORIGINE'].'">'.$UneOrigine['LIBELLEORIGINE'].'</option>';
+                    endforeach;?> 
+                </datalist>
+
+                <datalist id="entites">
+                    <?php foreach ($Entites as $UneEntite):
+                        echo '<option value="'.$UneEntite['NUMEROENTITE'].'">'.$UneEntite['LIBELLEENTITE'].'</option>';
+                    endforeach;?> 
+                </datalist>
+
+                <p class="text-danger">* champs obligatoire</p>
+
+                <input class="btn btn-success" required="required" placeholder="nom@domaine.tld" type="submit" name="BoutonAjouter" value="Valider" />
 
             </form>
         </div>

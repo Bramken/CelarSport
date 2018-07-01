@@ -1,7 +1,7 @@
 <?php
 class AdherentTemporaire extends CI_Model 
 {
-public function __construct()
+    public function __construct()
     {
         $this->load->database();
     } // __construct
@@ -24,7 +24,7 @@ public function __construct()
         return $this->db->count_all_results(); // nombre de ligne retournées par la requeête
     } // existe
 
-public function inserUnAdherentTemporaire($pDonneesAInserer)
+public function insererUnAdherentTemporaire($pDonneesAInserer)
     {
         return $this->db->insert('ADHERENT_TEMPORAIRE', $pDonneesAInserer);     
     } // insererUnAdherent temporaire

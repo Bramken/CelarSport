@@ -1,7 +1,7 @@
 <?php
 class Adherent extends CI_Model 
 {
-public function __construct()
+    public function __construct()
     {
         $this->load->database();
     } // __construct
@@ -44,14 +44,14 @@ public function __construct()
 
     public function retournerAdherentDropdown()
     {
-        $this->db->select('NUMEROADHERENT,NOMADHERENT,PRENOMADHERENT'); 
+        $this->db->select('NUMEROADHERENT,NOM,PRENOM'); 
         $this->db->from('ADHERENT');
         $query=$this->db->get();
         $results=$query->result_array();
         $i=0;
         /*foreach($results as $UneLigne):
             {
-                $autre[$i]['nomPrenomAdherent']=$UneLigne['NUMEROADHERENT']." ".$UneLigne['NOMADHERENT']." ".$UneLigne['PRENOMADHERENT'];
+                $autre[$i]['nomPrenomAdherent']=$UneLigne['NUMEROADHERENT']." ".$UneLigne['NOM']." ".$UneLigne['PRENOM'];
                 $autre[$i]['numeroAdherent']=$UneLigne['NUMEROADHERENT'];
                 $i=$i+1;
             } 
