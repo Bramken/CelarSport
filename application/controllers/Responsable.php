@@ -14,6 +14,7 @@ class Responsable extends CI_Controller {
         $this->load->model('Autorisation');
         $this->load->model('ClubOrigine');
         $this->load->model('Origine');
+        $this->load->model('Certificat');
         $this->load->model('Entite');   
         $this->load->view('templates/entete');
 
@@ -27,6 +28,7 @@ class Responsable extends CI_Controller {
     public function afficherAccueil()
     {
         $DonneesInjectees['unAdherent'] = $this->Adherent->retournerAdherent($this->session->numeroAdherent);
+        $DonneesInjectees['Autorisation'] = $this->Autorisation->retournerAutorisation($DonneesInjectees['unAdherent']->NUMEROAUTORISATION);
         $DonneesInjectees['TitreDeLaPage'] = "Votre n° d'adherent: ".$DonneesInjectees['unAdherent']->NUMEROADHERENT;
         $this->load->view('adherent/accueil', $DonneesInjectees);
         $this->load->view('templates/piedDePage');
@@ -198,6 +200,61 @@ class Responsable extends CI_Controller {
         else
         {   
             $this->load->view('adherent/ajouterUnAdherentTemporaire', $DonneesInjectees);
+            $this->load->view('templates/piedDePage');
+        }
+    }
+
+    public function listerAdherentRecherche()
+    {
+        $this->load->helper('form');           
+        $DonneesInjectees['TitreDeLaPage'] = 'Resultat de recherche';    
+        $Recherche = $this->input->post('txtRecherche'); // on récupère les données du formulaire de recherche
+        $Colonne = $this->input->post('txtColonne');   
+        $DonneesInjectees['lesAdherents']= $this->Adherent->retournerAdherentRecherche($Colonne,$Recherche);        
+        $this->load->view('adherent/afficherLesAdherents', $DonneesInjectees);   
+        $this->load->view('templates/PiedDePage');  
+    }
+
+    public function afficherEtatCertificat()
+    {
+        $DonneesInjectees['lesCertificats'] = $this->Certificat->retournerCertificatAfficher();
+        $DonneesInjectees['TitreDeLaPage'] = 'Les Certificats';
+        $this->load->view('adherent/afficherEtatCertificat', $DonneesInjectees);
+        $this->load->view('templates/piedDePage');
+    } 
+    public function ajouterUneAttestation()
+    {
+        $this->load->helper('form');
+        $DonneesInjectees['LesAdherents']=$this->Adherent->retournerAdherentDropdown();
+        $DonneesInjectees['LesCategories']=$this->Categorie->retournerCategorie();
+        $DonneesInjectees['LesCodesFederation']=$this->Section->retournerCodeFederation();
+        $DonneesInjectees['TitreDeLaPage'] = "Ajouter une section";
+ 
+        if ($this->input->post('BoutonAjouter'))
+        {   // formulaire non validé, on renvoie le formulaire
+            $DonneesAInsererCertificat = array(
+                'NUMEROADHERENT'=> $this->input->post('txtNumeroAdherent'),
+                'REMARQUE'=> $this->input->post('txtRemarque'),
+                'DATECERTIFICAT'=> $this->input->post('txtDateCertificat'),
+                'NOMDUFICHIER'=> $this->input->post('txtNomDuFichier')
+            );
+            $DonneesAInsererDetenir = array(
+                'NUMEROCERTIFICAT'=> $this->input->post('txtNumeroCertificat'),
+                'NUMEROSPORT'=> $this->input->post('txtNumeroSport')
+            );
+            if ($this->Section->insererSection($donneesAInserer)) // appel du modèle
+            {
+               $this->load->view('adherent/ajoutReussie'); 
+                $this->load->view('templates/piedDePage');  
+            }
+            else
+            {
+                redirect('administrateur/ajouterUneSection');
+            }
+        }
+        else
+        {   
+            $this->load->view('adherent/ajouterUneSection', $DonneesInjectees);
             $this->load->view('templates/piedDePage');
         }
     }

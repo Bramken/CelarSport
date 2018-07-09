@@ -6,7 +6,6 @@ class Autorisation extends CI_Model
         $this->load->database();
     } // __construct
 
-
     public function retournerAutorisation($pNoAutorisation=FALSE)
     {
         if ($pNoAutorisation==FALSE)
@@ -14,7 +13,7 @@ class Autorisation extends CI_Model
             $requete = $this->db->get('AUTORISATION');
             return $requete->result_array();
         }// retour d'un tableau associatif
-            $requete = $this->db->get_where('AUTORISATION',array('NUMEROAUTORISATION'=>$pNoAutorisation));
-            return $requete->row(); // retour d'une seule ligne !
+        $requete = $this->db->get_where('AUTORISATION',array('NUMEROAUTORISATION'=>$pNoAutorisation));
+        return $requete->row(); // retour d'une seule ligne !
     }
 }

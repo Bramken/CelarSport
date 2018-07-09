@@ -58,4 +58,13 @@ class Adherent extends CI_Model
         endforeach;*/
         return $results;/*array_column($autre,'nomPrenomAdherent','numeroAdherent');*/
     }
+
+    public function retournerAdherentRecherche($pColonne,$pRecherche)
+    {
+        $this->db->select('*');
+        $this->db->from('ADHERENT');
+        $this->db->like ($pColonne,$pRecherche);
+        $requete = $this->db->get();
+        return $requete->result_array();
+    }
 } // Fin Classe
