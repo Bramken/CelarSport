@@ -30,12 +30,20 @@ class Visiteur extends CI_Controller {
             // on va chercher le responsable correspondant au numero d'adherent et mot de passe saisis   
             $AdherentRetourne = $this->Adherent->retournerResponsable($Adherent);   
             if (!($AdherentRetourne == null))   
-            {    // on a trouvé, le n° d'adherent et n° d'autorisation (droit) sont stockés en session  
-                $this->load->library('session');   
-                $this->session->numeroAdherent = $AdherentRetourne->NUMEROADHERENT;   
-                $this->session->autorisation = $AdherentRetourne->NUMEROAUTORISATION;   
-                $DonneesInjectees['unAdherent'] = $this->Adherent->retournerAdherent($this->session->numeroAdherent); 
-                $this->load->view('adherent/connexionReussie', $DonneesInjectees);   
+            {    // on a trouvé, le n° d'adherent et n° d'autorisation (droit) sont stockés en session
+                if($AdherentRetourne->NUMEROAUTORISATION <2 or $AdherentRetourne->NUMEROAUTORISATION >8 && $AdherentRetourne->NUMEROAUTORISATION !=5)
+                {
+                    
+                    $this->load->view('adherent/autorisation');
+                }
+                else
+                {
+                    $this->load->library('session');   
+                    $this->session->numeroAdherent = $AdherentRetourne->NUMEROADHERENT;   
+                    $this->session->autorisation = $AdherentRetourne->NUMEROAUTORISATION;   
+                    $DonneesInjectees['unAdherent'] = $this->Adherent->retournerAdherent($this->session->numeroAdherent); 
+                    $this->load->view('adherent/connexionReussie', $DonneesInjectees);   
+                }  
                 $this->load->view('templates/piedDePage');   
             }   
             else   
@@ -43,6 +51,20 @@ class Visiteur extends CI_Controller {
                 $this->load->view('adherent/seConnecter', $DonneesInjectees);   
                 $this->load->view('templates/piedDePage');   
             }     
+    }
+
+    public function afficherAccueil()
+    {
+        $this->load->library('session');
+        if ($this->session->autorisation==1 or $this->session->autorisation==5 or $this->session->autorisation==9 or !isset($this->session->autorisation)) // 0 : statut visiteur
+        {
+            redirect('/visiteur/seConnecter');
+        }
+        $DonneesInjectees['unAdherent'] = $this->Adherent->retournerAdherent($this->session->numeroAdherent);
+        $DonneesInjectees['Autorisation'] = $this->Autorisation->retournerAutorisation($DonneesInjectees['unAdherent']->NUMEROAUTORISATION);
+        $DonneesInjectees['TitreDeLaPage'] = "Votre n° d'adherent: ".$DonneesInjectees['unAdherent']->NUMEROADHERENT;
+        $this->load->view('adherent/accueil', $DonneesInjectees);
+        $this->load->view('templates/piedDePage');
     }
 
     public function seDeConnecter()

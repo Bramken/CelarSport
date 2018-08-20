@@ -43,10 +43,10 @@
                 <input class= "form-control"  list="origines" placeholder=""  name="txtOrigine" value="<?php echo $unAdherent->NUMEROORIGINE; ?>" /><br/>
 
                 <label for="txtEntite">Entité</label>
-                <input class= "form-control" list="entites" placeholder=""  name="txtEntite" value="<?php echo $unAdherent->NUMEROENTITE; ?>" /><br/>
+                <input class= "form-control" list="entites" type="text" placeholder=""  name="txtEntite" value="<?php echo $unAdherent->NUMEROENTITE; ?>" /><br/>
 
                 <label for="txtVilleNaissance">Ville de naissance<span class="text-danger">*</span></label>
-                <input class= "form-control" required="required" placeholder=""  name="txtVilleNaissance" value="<?php echo $unAdherent->VILLENAISSANCE; ?>" /><br/>
+                <input class= "form-control" placeholder=""  name="txtVilleNaissance" value="<?php echo $unAdherent->VILLENAISSANCE; ?>" /><br/>
 
                 <label for="txtDepartementNaissance">Departement naissance</label>
                 <input class= "form-control" placeholder=""  name="txtDepartementNaissance" value="<?php echo $unAdherent->DEPARTEMENTNAISSANCE; ?>" /><br/>

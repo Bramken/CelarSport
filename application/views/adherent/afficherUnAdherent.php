@@ -29,6 +29,48 @@
                     Prenom: 
                     <?php echo $unAdherent->PRENOM;?>
                 </div>
+            </div><br>
+            <div class="row">
+                <br><div class="col">
+                    Numéro license:     
+                    <?php echo $unAdherent->NUMEROLICENSE;?>
+                </div>
+                <div class="col">
+                    Envoie féderation:     
+                    <?php echo $unAdherent->DATEENVOIFEDERATION;?>
+                </div>
+                <div class="col">
+                    Telephone: 
+                    <?php echo $unAdherent->TELEPHONE;?>
+                </div>
+            </div><br>
+            <div class="row">
+                <br><div class="col">
+                    Email professionnel:     
+                    <?php echo $unAdherent->EMAILPROFESSIONNEL;?>
+                </div>
+                <div class="col">
+                    Email exterieur:     
+                    <?php echo $unAdherent->EMAILEXTERIEUR;?>
+                </div>
+                <div class="col">
+                    Date de naissance: 
+                    <?php echo $unAdherent->DATENAISSANCE;?>
+                </div>
+            </div><br>
+            <div class="row">
+                <br><div class="col">
+                    Autorisation:     
+                    <?php echo $unAdherent->NUMEROAUTORISATION;?>
+                </div>
+                <div class="col">
+                    Genre:     
+                    <?php echo $unAdherent->GENRE;?>
+                </div>
+                <div class="col">
+                    Origine: 
+                    <?php echo $unAdherent->NUMEROORIGINE;?>
+                </div>
             </div>
         </div>
     </div><br>

@@ -19,20 +19,11 @@ class Responsable extends CI_Controller {
         $this->load->view('templates/entete');
 
         $this->load->library('session');
-        if (!isset($this->session->autorisation)) // 0 : statut visiteur
-        {
-            redirect('/visiteur/seConnecter'); // pas les droits : redirection vers connexion
+        if (!$this->session->autorisation==2 or !$this->session->autorisation==3 or !$this->session->autorisation==6) // 0 : statut visiteur
+        {    
+            $this->load->view('/adherent/autorisation');
         }
     } // __construct
-
-    public function afficherAccueil()
-    {
-        $DonneesInjectees['unAdherent'] = $this->Adherent->retournerAdherent($this->session->numeroAdherent);
-        $DonneesInjectees['Autorisation'] = $this->Autorisation->retournerAutorisation($DonneesInjectees['unAdherent']->NUMEROAUTORISATION);
-        $DonneesInjectees['TitreDeLaPage'] = "Votre n° d'adherent: ".$DonneesInjectees['unAdherent']->NUMEROADHERENT;
-        $this->load->view('adherent/accueil', $DonneesInjectees);
-        $this->load->view('templates/piedDePage');
-    }
 
     public function afficherUnAdherent($pNoAdherent)
     {
@@ -111,6 +102,7 @@ class Responsable extends CI_Controller {
         $DonneesInjectees['ClubOrigines']=$this->ClubOrigine->retournerClubOrigine();
         $DonneesInjectees['Origines']=$this->Origine->retournerOrigine();
         $DonneesInjectees['Entites']=$this->Entite->retournerEntite();
+        var_dump($DonneesInjectees['Entites']);
         if (empty($DonneesInjectees['unAdherent']))   
         {   
             show_404();   
@@ -160,6 +152,15 @@ class Responsable extends CI_Controller {
         $DonneesInjectees['lesSections'] = $this->Section->retournerSectionAfficher();
         $DonneesInjectees['TitreDeLaPage'] = 'Les Sections';
         $this->load->view('adherent/afficherLesSections', $DonneesInjectees);
+        $this->load->view('templates/piedDePage');
+    } // listerLesProduits
+
+    public function afficherUneSection($pNoSection)
+    {
+        $DonneesInjectees['UneSection'] = $this->Section->retournerSectionAfficher($pNoSection);
+        $DonneesInjectees['AdherentSection'] = $this->Section->retournerAdherentSection($pNoSection);
+        $DonneesInjectees['TitreDeLaPage'] ="N° section: ".$DonneesInjectees['UneSection']->NUMEROSECTION;
+        $this->load->view('adherent/afficherUneSection', $DonneesInjectees);
         $this->load->view('templates/piedDePage');
     } // listerLesProduits
     

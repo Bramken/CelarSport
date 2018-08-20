@@ -7,10 +7,10 @@
             <?php echo form_open('administrateur/ajouterUneSection',array('class' => 'form-control-sm')) ?>
 
                 <label for="txtAdherent">Adhérent</label>
-                <input class="form-control" list="adherents" type="text" name="txtAdherent" value="<?php echo set_value('txtAdherent') readonly; ?>"><br/>
+                <input class="form-control" list="adherents" type="text" name="txtAdherent" value="<?php echo set_value('txtAdherent') ; ?>" readonly"><br/>
 
                 <label for="txtCertificat">Certificat</label>
-                <input class="form-control" type="text" name="txtCertificat" value="<?php echo set_value('txtCertificat') readonly; ?>"><br/>
+                <input class="form-control" type="text" name="txtCertificat" value="<?php echo set_value('txtCertificat') ; ?>"readonly><br/>
 
                 <label for="txtCodeFederation">Date attestation</label>
                 <input class= "form-control" list="codesfederation" name="txtCodeFederation" value="<?php echo set_value('txtCodeFederation'); ?>" /><br/>

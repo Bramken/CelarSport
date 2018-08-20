@@ -10,7 +10,7 @@
       	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 		<div class="container-fluid">	  
 			<br><div class="card bg-secondary mb-3 text-center">
-				<a class="card-link text-dark" title="Accueil" href="<?php echo site_url('responsable/afficheraccueil')?>"><h3 class="card-title">Gestion Adherents Celar Sport</h3></a>			
+				<a class="card-link text-dark" title="Accueil" href="<?php echo site_url('visiteur/afficheraccueil')?>"><h3 class="card-title">Gestion Adherents Celar Sport</h3></a>			
 			</div>
 		</div>	       
 	</head> 
