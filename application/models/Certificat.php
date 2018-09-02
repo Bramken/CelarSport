@@ -29,4 +29,15 @@ class Certificat extends CI_Model
         ORDER BY `certi`.`NUMEROCERTIFICAT`  ASC");
         return $requete->result_array();
     }
+
+    public function retournerCertificatParAdherentAfficher($pNoAdherent)
+    {
+        $requete = $this->db->query("SELECT certi.NUMEROCERTIFICAT , `NUMEROADHERENT`, `REMARQUE`, `DATECERTIFICAT`,`LIBELLESPORT`,`NUMEROATTESTATION`,`DATEATTESTATION` 
+        FROM CERTIFICAT certi 
+        LEFT OUTER JOIN DETENIR dtn ON (certi.NUMEROCERTIFICAT = dtn.NUMEROCERTIFICAT) 
+        LEFT OUTER JOIN SPORT spo ON (dtn.NUMEROSPORT = spo.NUMEROSPORT) 
+        LEFT OUTER JOIN attestation ats ON (certi.NUMEROCERTIFICAT = ats.NUMEROCERTIFICAT) 
+        WHERE NUMEROADHERENT=".$pNoAdherent);
+        return $requete->result_array();
+    }
 }

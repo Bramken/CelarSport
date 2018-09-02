@@ -1,10 +1,19 @@
 <div class="container">
     <span> <?php 
-        echo form_open("/responsable/listerAdherentRecherche",array('class'=>'form-inline my-2 my-lg-0')); 
-        echo form_input(array('name'=>'txtRecherche','class'=>'form-control','type'=>'search','placeholder'=>'Search','required'=>'required'));
-        echo form_dropdown('txtColonne', array('NUMEROADHERENT'=> 'numero adherent','NOM'=> 'nom adherent','PRENOM'=> "prenom adherent",'DATENAISSANCE'=> 'date de naissance','NUMEROAUTORISATION'=> "numero d'autorisation"),'1','class="form-control" required="required"');
-        echo form_submit(array('name'=>'btnRecherche','class'=>'btn btn-success','type'=>'submit','value'=>'Rechercher'));
-        echo form_close();?></br>
+        echo '<div class="form-row">';
+            echo '<div class="col">';
+                echo form_open("/responsable/listerAdherentRecherche",array('class'=>'form-inline my-2 my-lg-0')); 
+                echo form_input(array('name'=>'txtRecherche','class'=>'form-control','type'=>'search','placeholder'=>'Search','required'=>'required'));
+                echo form_dropdown('txtColonne', array('NUMEROADHERENT'=> 'numero adherent','NOM'=> 'nom adherent','PRENOM'=> "prenom adherent",'DATENAISSANCE'=> 'année de naissance','NUMEROAUTORISATION'=> "numero d'autorisation"),'1','class="form-control" required="required"');
+                echo form_submit(array('name'=>'btnRecherche','class'=>'btn btn-success','type'=>'submit','value'=>'Rechercher'));
+                echo form_close();?>
+            </div>
+            <div class="col">
+                <?php echo form_open("/responsable/afficherLesAdherents",array('class'=>'form-inline my-2 my-lg-0'));
+                echo form_submit(array('name'=>'btnRecherche','class'=>'btn btn-success','type'=>'submit','value'=>'Sans filtre'));
+                echo form_close();?></br>
+            </div>
+        </div>
     </span>      
     <table class="table table-striped table-bordered text-center">
         <thead class="thead-light">
@@ -16,6 +25,7 @@
                 <th scope="col">date envoi féde.</th>
                 <th scope="col">telephone</th>
                 <th scope="col">email pro./ext</th>
+                <th scope="col">commentaire</th>
 
                 <!--<th scope="col">n° adherent qui a saisi</th>            
                 <th scope="col">n° license</th>
@@ -43,8 +53,8 @@
                     <td>'.$unAdherent['NUMEROLICENSE'].'</td>
                     <td>'.$unAdherent['DATEENVOIFEDERATION'].'</td>
                     <td>'.$unAdherent['TELEPHONE'].'</td>
-                    <td><small>'.$unAdherent['EMAILPROFESSIONNEL'].'/'.$unAdherent['EMAILEXTERIEUR'].'</small></td>'.
-
+                    <td>'.$unAdherent['EMAILPROFESSIONNEL'].'<br>'.$unAdherent['EMAILEXTERIEUR'].'</td>
+                    <td>'.$unAdherent['COMMENTAIRE'].'</td>'.
                     /*'<td>'.$unAdherent['NUMEROADHERENT_SAISIR'].'</td>                         
                     <td>'.$unAdherent['DATEEDITIONCARTE'].'</td>
                     <td>'.$unAdherent['DATENAISSANCE'].'</td>

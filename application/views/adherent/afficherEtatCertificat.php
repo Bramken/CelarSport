@@ -17,10 +17,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($lesCertificats as $unCertificat):
-                        if (isset($unCertificat['DATECERTIFICAT']) && date('Y-m-d')-$unCertificat['DATECERTIFICAT']<strtotime('3 year'))
+                    <?php foreach ($lesCertificats as $unCertificat):    
+                    $interval=new DateInterval('P3Y') ;
+                    var_dump($interval);           
+                        if (isset($unCertificat['DATECERTIFICAT']) && date('Y-m-d')-$unCertificat['DATECERTIFICAT']<$interval))
                         {
-                            if(($unCertificat['DATECERTIFICAT']-date('Y-m-d'))<strtotime('1 year'))
+                            if(($unCertificat['DATECERTIFICAT']-date('Y-m-d'))<$OneYear)
                             {
                                 echo '<tr>
                                 <td>'.anchor('responsable/afficherUnCertificat/'.$unCertificat['NUMEROCERTIFICAT'],$unCertificat['NUMEROCERTIFICAT']).'</td>                        
@@ -32,9 +34,39 @@
                                 <td>Certificat à jour</td>';
                             
                             }
-                            if(($unCertificat['DATECERTIFICAT']-date('Y-m-d'))>=strtotime('1 year') && ($unCertificat['DATECERTIFICAT']-date('Y-m-d'))<=strtotime('3 year') )
+                            if(($unCertificat['DATECERTIFICAT']-date('Y-m-d'))>=strtotime('1 year'))
                             {
-                                if(($unCertificat['DATECERTIFICAT']-date('Y-m-d'))>=strtotime('1 year') && ($unCertificat['DATECERTIFICAT']-date('Y-m-d'))<strtotime('2 year'))
+                                if (($unCertificat['DATEATTESTATION']-date('Y-m-d'))>=strtotime('1 year'))
+                                {
+                                    echo '<tr>
+                                    <td>'.anchor('responsable/afficherUnCertificat/'.$unCertificat['NUMEROCERTIFICAT'],$unCertificat['NUMEROCERTIFICAT']).'</td>                        
+                                    <td>'.$unCertificat['NUMEROADHERENT'].'</td>
+                                    <td>'.$unCertificat['REMARQUE'].'</td>
+                                    <td>'.$unCertificat['DATECERTIFICAT'].'</td>
+                                    <td>'.$unCertificat['DATEATTESTATION'].'</td>
+                                    <td>'.$unCertificat['LIBELLESPORT'].'</td>
+                                    <td>Attestation pas à jour</td>';
+                                }
+                                if (($unCertificat['DATEATTESTATION']-date('Y-m-d'))<strtotime('1 year'))
+                                {
+                                    echo '<tr>
+                                    <td>'.anchor('responsable/afficherUnCertificat/'.$unCertificat['NUMEROCERTIFICAT'],$unCertificat['NUMEROCERTIFICAT']).'</td>                        
+                                    <td>'.$unCertificat['NUMEROADHERENT'].'</td>
+                                    <td>'.$unCertificat['REMARQUE'].'</td>
+                                    <td>'.$unCertificat['DATECERTIFICAT'].'</td>
+                                    <td>'.$unCertificat['DATEATTESTATION'].'</td>
+                                    <td>'.$unCertificat['LIBELLESPORT'].'</td>
+                                    <td>Attestation à jour</td>';
+                                }
+                            }
+                        }
+                    endforeach ?>
+                </tbody>
+            </table>
+        </div>
+    </div> 
+</div><br>
+                                <!--if(($unCertificat['DATECERTIFICAT']-date('Y-m-d'))>=strtotime('1 year') && ($unCertificat['DATECERTIFICAT']-date('Y-m-d'))<strtotime('2 year'))
                                 {
                                     if($unCertificat['NUMEROATTESTATION']==1)
                                     {
@@ -64,8 +96,8 @@
                                     }
 
                                 }
-                            }    
-                               /* if(isset($unCertificat['DATECERTIFICAT']))
+                            }   
+                                if(isset($unCertificat['DATECERTIFICAT']))
                                 {
                                     $dateCertificat=$unCertificat['DATECERTIFICAT'];
                                     $unAn = strtotime('1 year');
@@ -111,11 +143,5 @@
                                 {
                                 echo '<td>Pas de certificat</td>';
                                 }
-                            echo '</tr>';*/
-                        }
-                    endforeach ?>
-                </tbody>
-            </table>
-        </div>
-    </div> 
-</div><br>
+                                echo '</tr>';-->
+  

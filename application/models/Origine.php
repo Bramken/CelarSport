@@ -17,4 +17,9 @@ class Origine extends CI_Model
             $requete = $this->db->get_where('ORIGINE',array('NUMEROORIGINE'=>$pNoOrigine));
             return $requete->row(); // retour d'une seule ligne !
     }
+    public function retournerLibelleOrigine($pNoOrigine)
+    {
+        $requete = $this->db->query("SELECT LIBELLEORIGINE,CODEORIGINE,TYPEORIGINE FROM ORIGINE WHERE NUMEROORIGINE=".$pNoOrigine);
+        return $requete->row();
+    }
 }
