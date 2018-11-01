@@ -44,8 +44,8 @@
                 <label for="txtCodePostal">CodePostal<span class="text-danger">*</span></label>
                 <input class= "form-control" required="required"  title="Code postal pas valide !" placeholder="ex : 35230" pattern="^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$" name="txtCodePostal" value="<?php echo set_value('txtCodePostal'); ?>" /><br/>
 
-                <label for="txtAutorisation">Autorisations<span class="text-danger">*</span></label><br/>
-                <input class="form-control" list="autorisations" type="text" name="txtAutorisation" value="<?php echo set_value('txtAutorisation'); ?>"><br/>
+                <label for="txtStatut">Statuts<span class="text-danger">*</span></label><br/>
+                <input class="form-control" list="statuts" type="text" name="txtStatut" value="<?php echo set_value('txtStatut'); ?>"><br/>
 
 
                 <label for="txtOrigine">Origine</label>
@@ -94,9 +94,9 @@
                     endforeach;?> 
                 </datalist>
 
-                <datalist id="autorisations">
-                    <?php foreach ($Autorisations as $UneAutorisation):
-                        echo '<option value="'.$UneAutorisation['NUMEROAUTORISATION'].'">'.$UneAutorisation['LIBELLEAUTORISATION'].'</option>';
+                <datalist id="statuts">
+                    <?php foreach ($Statuts as $UnStatut):
+                        echo '<option value="'.$UnStatut['LIBELLESTATUT'].'">'.$UnStatut['LIBELLESTATUT'].'</option>';
                     endforeach;?> 
                 </datalist>
 

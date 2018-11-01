@@ -10,9 +10,9 @@ class Section extends CI_Model
     {
         return $this->db->insert('SECTION', $pDonneesAInserer);  
     }
-    public function modifierSection($pDonneesAInserer,$pNoSection)
+    public function modifierSection($pDonneesAInserer,$pLibelleSection)
     {
-        $this->db->where('NUMEROSECTION', $pNoSection);
+        $this->db->where('LIBELLESECTION', $pLibelleSection);
         $this->db->update('SECTION', $pDonneesAInserer);
     }
     public function retournerSection($pNoSection=FALSE)
@@ -24,18 +24,6 @@ class Section extends CI_Model
         }// retour d'un tableau associatif
             $requete = $this->db->get_where('SECTION',array('NUMEROSECTION'=>$pNoSection));
             return $requete->row(); // retour d'une seule ligne !
-    }
-
-    public function retournerSectionAfficher($pNoSection=FALSE)
-    {
-        if ($pNoSection==FALSE)
-        {
-            $requete = $this->db->query("SELECT `NUMEROSECTION`, `LIBELLECATEGORIE`, `LIBELLESECTION`, `CODEFEDERATION` FROM section sec LEFT OUTER JOIN categorie cat ON (sec.NUMEROCATEGORIE = cat.numerocategorie) ORDER BY NUMEROSECTION ASC");
-            return $requete->result_array();
-        }
-            $requete = $this->db->query("SELECT `NUMEROSECTION`, `LIBELLECATEGORIE`, `LIBELLESECTION`, `CODEFEDERATION` FROM section sec LEFT OUTER JOIN categorie cat ON (sec.NUMEROCATEGORIE = cat.numerocategorie) WHERE `NUMEROSECTION`=$pNoSection ORDER BY NUMEROSECTION ASC");
-            return $requete->row();
-
     }
 
     public function retournerCodeFederation()
@@ -50,8 +38,15 @@ class Section extends CI_Model
         {
             show_404();
         }
-            $requete = $this->db->query("SELECT sous.NUMEROADHERENT,NOM,PRENOM,DATENAISSANCE FROM souscrir sous LEFT OUTER JOIN adherent adh on (sous.NUMEROADHERENT=adh.NUMEROADHERENT) WHERE NUMEROSECTION=$pNoSection");
+            $requete = $this->db->query("SELECT sous.NUMEROADHERENT,NOM,PRENOM,DATENAISSANCE FROM souscrir sous LEFT OUTER JOIN adherent adh on (sous.NUMEROADHERENT=adh.NUMEROADHERENT) WHERE NUMEROSECTION='$pNoSection'");
             return $requete->result_array();
 
     }
+
+    public function existe($pLibelleSection) // non utilisée retour 1 si connecté, 0 sinon
+    {
+        $this->db->where('LIBELLESECTION',$pLibelleSection);
+        $this->db->from('SECTION');
+        return $this->db->count_all_results(); // nombre de ligne retournées par la requeête
+    } // existe
 }

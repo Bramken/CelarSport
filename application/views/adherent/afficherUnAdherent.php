@@ -69,8 +69,8 @@
         <div class="card-body text-center">
             <div class="row">
                     <br><div class="col">
-                        Autorisation:     
-                        <?php echo $unAdherent->NUMEROAUTORISATION;?>
+                        Statut:     
+                        <?php echo $unAdherent->LIBELLESTATUT;?>
                     </div>
                     <div class="col">
                         Origine: 

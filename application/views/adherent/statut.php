@@ -1,0 +1,2 @@
+</br><h3 class="text-center">Vous n'avez pas l'accréditation requise, merci de contacter un administrateur pour plus d'infos.</h3>
+<?php echo '<p class="text-center">'.anchor('visiteur/AfficherAccueil','retour').'</p>';

@@ -23,21 +23,15 @@ class Certificat extends CI_Model
         return $requete->row(); // retour d'une seule ligne !
     }
 
-    public function retournerCertificatAfficher()
+    public function retournerCertificatAfficher($pNoAdherent=FALSE)
     {
-        $requete = $this->db->query("SELECT certi.NUMEROCERTIFICAT , `NUMEROADHERENT`, `REMARQUE`, `DATECERTIFICAT`,`LIBELLESPORT`,`NUMEROATTESTATION`,`DATEATTESTATION` FROM CERTIFICAT certi LEFT OUTER JOIN DETENIR dtn ON (certi.NUMEROCERTIFICAT = dtn.NUMEROCERTIFICAT) LEFT OUTER JOIN SPORT spo ON (dtn.NUMEROSPORT = spo.NUMEROSPORT) LEFT OUTER JOIN attestation ats ON (certi.NUMEROCERTIFICAT = ats.NUMEROCERTIFICAT)  
-        ORDER BY `certi`.`NUMEROCERTIFICAT`  ASC");
+        if($pNoAdherent==FALSE)
+        {
+            $requete = $this->db->query("SELECT NUMEROCERTIFICAT , certif.NUMEROADHERENT, REMARQUE, DATECERTIFICAT,DATEATTESTATION FROM CERTIFICAT AS certif,ADHERENT ORDER BY `NUMEROCERTIFICAT` ASC");
+            return $requete->result_array();
+        }
+        $requete = $this->db->query("SELECT NUMEROCERTIFICAT,certif.NUMEROADHERENT,`REMARQUE`, `DATECERTIFICAT`,DATEATTESTATION FROM CERTIFICAT AS certif,ADHERENT WHERE certif.NUMEROADHERENT = ADHERENT.NUMEROADHERENT AND certif.NUMEROADHERENT =".$pNoAdherent);
         return $requete->result_array();
-    }
-
-    public function retournerCertificatParAdherentAfficher($pNoAdherent)
-    {
-        $requete = $this->db->query("SELECT certi.NUMEROCERTIFICAT , `NUMEROADHERENT`, `REMARQUE`, `DATECERTIFICAT`,`LIBELLESPORT`,`NUMEROATTESTATION`,`DATEATTESTATION` 
-        FROM CERTIFICAT certi 
-        LEFT OUTER JOIN DETENIR dtn ON (certi.NUMEROCERTIFICAT = dtn.NUMEROCERTIFICAT) 
-        LEFT OUTER JOIN SPORT spo ON (dtn.NUMEROSPORT = spo.NUMEROSPORT) 
-        LEFT OUTER JOIN attestation ats ON (certi.NUMEROCERTIFICAT = ats.NUMEROCERTIFICAT) 
-        WHERE NUMEROADHERENT=".$pNoAdherent);
-        return $requete->result_array();
+        
     }
 }

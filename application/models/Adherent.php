@@ -17,6 +17,17 @@ class Adherent extends CI_Model
             return $requete->row(); // retour d'une seule ligne !
     } // retournerClient
 
+    public function retournerAdherentTemporaire($pNoAdherent=FALSE)
+    {
+        if ($pNoAdherent==FALSE)
+        {
+            $requete = $this->db->get_where('ADHERENT',array('TEMPORAIRE'=>1));
+            return $requete->result_array();
+        }// retour d'un tableau associatif
+        $requete = $this->db->query("SELECT * from ADHERENT where TEMPORAIRE=1 and NUMEROADHERENT=$pNoAdherent");
+        return $requete->row(); // retour d'une seule ligne !
+    } // retournerClient
+
     public function existe($pNoAdherent) // non utilisée retour 1 si connecté, 0 sinon
     {
         $this->db->where($pNoAdherent);
@@ -35,11 +46,12 @@ class Adherent extends CI_Model
         $this->db->update('ADHERENT', $pDonneesAInserer);   
     } // modifierUnAdherent
 
-    public function retournerResponsable($pAdherent)
+    public function retournerAdherentConnection($pAdherent)
     {
         $requete = $this->db->get_where('ADHERENT',$pAdherent);
         return $requete->row(); // retour d'une seule ligne !
         // retour sous forme d'objets
+        
     } // retournerClient
 
     public function retournerAdherentDropdown()
@@ -66,5 +78,10 @@ class Adherent extends CI_Model
         $this->db->like ($pColonne,$pRecherche);
         $requete = $this->db->get();
         return $requete->result_array();
+    }
+
+    public function supprimerUnAdherentTemporaire($pNumeroAdherentTemporaire)
+    {
+        $this->db->delete('ADHERENT', array('NUMEROADHERENT' => $pNumeroAdherentTemporaire));
     }
 } // Fin Classe

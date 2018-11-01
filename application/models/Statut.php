@@ -1,14 +1,14 @@
 <?php
-class ClubOrigine extends CI_Model 
+class Statut extends CI_Model 
 {
     public function __construct()
     {
         $this->load->database();
     } // __construct
 
-    public function retournerClubsOrigine()
+    public function retournerStatuts()
     {
-            $requete = $this->db->get('CLUB_ORIGINE');
+            $requete = $this->db->get('STATUT');
             return $requete->result_array();
     }
 }

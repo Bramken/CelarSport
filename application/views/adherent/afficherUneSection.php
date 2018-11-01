@@ -17,17 +17,10 @@
         <div class="card-body text-center">
            
             <div class="row">
-                <br><div class="col">
-                    Nom:     
-                    <?php echo $UneSection->LIBELLESECTION;?>
-                </div>
+                <br>
                 <div class="col">
                     Code federation:     
                     <?php echo $UneSection->CODEFEDERATION;?>
-                </div>
-                <div class="col">
-                    Categorie: 
-                    <?php echo $UneSection->LIBELLECATEGORIE;?>
                 </div>
         </div>
     </div>
@@ -35,7 +28,34 @@
 <div class="container">
     <div class="card text-center">
         <div class="card-header">
-            <h6 class="card-title"><?php echo "Adherent de la section ".$UneSection->LIBELLESECTION;  ?></h6>
+            <h6 class="card-title"><?php echo "Gérants de la section ";  ?></h6>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">n° adhérent</th>
+                        <th scope="col">nom</th>
+                        <th scope="col">prenom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($GerantsSection as $unGerant):
+                        echo '<tr>
+                            <td>'.anchor('responsable/afficherUnAdherent/'.$unGerant['NUMEROADHERENT'],$unGerant['NUMEROADHERENT']).'</td>                       
+                            <td>'.$unGerant['NOM'].'</td>
+                            <td>'.$unGerant['PRENOM'].'</td>
+                        </tr>';
+                    endforeach ?>
+                </tbody>
+            </table>
+        </div>
+    </div> 
+</div><br>
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <h6 class="card-title"><?php echo "Adherent de la section ";  ?></h6>
         </div>
         <div class="card-body">
             <table class="table table-striped table-bordered text-center">
@@ -48,7 +68,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($AdherentSection as $unAdherent):
+                    <?php foreach ($AdherentsSection as $unAdherent):
                         echo '<tr>
                             <td>'.anchor('responsable/afficherUnAdherent/'.$unAdherent['NUMEROADHERENT'],$unAdherent['NUMEROADHERENT']).'</td>                       
                             <td>'.$unAdherent['NOM'].'</td>

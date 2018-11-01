@@ -4,7 +4,7 @@
             echo '<div class="col">';
                 echo form_open("/responsable/listerAdherentRecherche",array('class'=>'form-inline my-2 my-lg-0')); 
                 echo form_input(array('name'=>'txtRecherche','class'=>'form-control','type'=>'search','placeholder'=>'Search','required'=>'required'));
-                echo form_dropdown('txtColonne', array('NUMEROADHERENT'=> 'numero adherent','NOM'=> 'nom adherent','PRENOM'=> "prenom adherent",'DATENAISSANCE'=> 'année de naissance','NUMEROAUTORISATION'=> "numero d'autorisation"),'1','class="form-control" required="required"');
+                echo form_dropdown('txtColonne', array('NUMEROADHERENT'=> 'numero adherent','NOM'=> 'nom adherent','PRENOM'=> "prenom adherent",'DATENAISSANCE'=> 'année de naissance','NUMEROAUTORISATION'=> "numero d'statut"),'1','class="form-control" required="required"');
                 echo form_submit(array('name'=>'btnRecherche','class'=>'btn btn-success','type'=>'submit','value'=>'Rechercher'));
                 echo form_close();?>
             </div>

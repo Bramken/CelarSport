@@ -8,20 +8,19 @@ class Responsable extends CI_Controller {
         $this->load->helper('assets'); // helper 'assets' ajouté a Application
         $this->load->library("pagination");
         $this->load->model('Adherent'); // chargement modèle, obligatoire
-        $this->load->model('AdherentTemporaire');
-        $this->load->model('Categorie'); 
         $this->load->model('Section');
-        $this->load->model('Autorisation');
         $this->load->model('ClubOrigine');
         $this->load->model('Origine');
+        $this->load->model('Statut');
         $this->load->model('Certificat');
+        $this->load->model('Gerer');
         $this->load->model('Entite');   
         $this->load->view('templates/entete');
 
         $this->load->library('session');
-        if (!$this->session->autorisation==2 or !$this->session->autorisation==3 or !$this->session->autorisation==4 or !$this->session->autorisation==6 or !isset($this->session->autorisation)) // 0 : statut visiteur
+        if (!$this->session->statut==2 or !$this->session->statut==3 or !$this->session->statut==4 or !$this->session->statut==6 or !isset($this->session->statut)) // 0 : statut visiteur
         {    
-            $this->load->view('/adherent/autorisation');
+            $this->load->view('/adherent/statut');
             sleep(5);
             redirect('visiteur/afficherAccueil');
             
@@ -32,7 +31,7 @@ class Responsable extends CI_Controller {
     {
         $DonneesInjectees['unAdherent'] = $this->Adherent->retournerAdherent($pNoAdherent);
         $DonneesInjectees['Origine'] = $this->Origine->retournerLibelleOrigine($pNoAdherent);
-        $DonneesInjectees['Certificats']=$this->Certificat->retournerCertificatParAdherentAfficher($pNoAdherent);
+        $DonneesInjectees['Certificats']=$this->Certificat->retournerCertificatAfficher($pNoAdherent);
         $DonneesInjectees['TitreDeLaPage'] = "N° d'adherent: ".$DonneesInjectees['unAdherent']->NUMEROADHERENT;
         $this->load->view('adherent/afficherUnAdherent', $DonneesInjectees);
         $this->load->view('templates/piedDePage');
@@ -50,10 +49,10 @@ class Responsable extends CI_Controller {
     {
         $this->load->helper('form');
         $DonneesInjectees['LesAdherents']=$this->Adherent->retournerAdherent();
-        $DonneesInjectees['Autorisations']=$this->Autorisation->retournerAutorisation();
-        $DonneesInjectees['ClubOrigines']=$this->ClubOrigine->retournerClubOrigine();
+        $DonneesInjectees['Statuts']=$this->Statut->retournerStatuts();
+        $DonneesInjectees['ClubOrigines']=$this->ClubOrigine->retournerClubsOrigine();
         $DonneesInjectees['Origines']=$this->Origine->retournerOrigine();
-        $DonneesInjectees['Entites']=$this->Entite->retournerEntite();
+        $DonneesInjectees['Entites']=$this->Entite->retournerEntites();
         $DonneesInjectees['TitreDeLaPage'] = "Ajouter un adherent";
  
         if ($this->input->post('BoutonAjouter'))
@@ -68,9 +67,9 @@ class Responsable extends CI_Controller {
                 'GENRE'=> $this->input->post('txtGenre'),
                 'CODEPOSTAL'=> $this->input->post('txtCodePostal'),
                 'NOMDUSAGE'=> $this->input->post('txtNomDUsage'),
-                'NUMEROAUTORISATION'=> $this->input->post('txtAutorisation'),
+                'LIBELLESTATUT'=> $this->input->post('txtStatut'),
                 'NUMEROORIGINE'=> $this->input->post('txtOrigine'),
-                'NUMEROENTITE'=> $this->input->post('txtEntite'),
+                'LIBELLEENTITE'=> $this->input->post('txtEntite'),
                 'VILLENAISSANCE'=> $this->input->post('txtVilleNaissance'),
                 'DEPARTEMENTNAISSANCE'=> $this->input->post('txtDepartementNaissance'),
                 'TELEPHONE'=> $this->input->post('txtTelephone'),
@@ -80,11 +79,11 @@ class Responsable extends CI_Controller {
                 'MOTDEPASSE'=> $this->input->post('txtMotDePasse'),
                 'NUMEROADHERENT_PARENT'=> $this->input->post('txtParent'),
                 'NUMEROADHERENT_COUPLER'=> $this->input->post('txtCouple'),
-                'NUMEROCLUB'=> $this->input->post('txtClubOrigine')
+                'LIBELLECLUB'=> $this->input->post('txtClubOrigine')
             ); // NOM, PRENOM, EMAILPROFESSIONNEL : champs de la table ADHERENT
             if ($this->Adherent->insererUnAdherent($donneesAInserer)) // appel du modèle
             {
-                $this->load->view('visiteur/ajoutReussie'); 
+                $this->load->view('adherent/ajoutReussie'); 
                 $this->load->view('templates/piedDePage');  
             }
             else
@@ -103,11 +102,10 @@ class Responsable extends CI_Controller {
     {
         $DonneesInjectees['unAdherent'] = $this->Adherent->retournerAdherent($NoAdherent);
         $DonneesInjectees['LesAdherents']=$this->Adherent->retournerAdherent();
-        $DonneesInjectees['Autorisations']=$this->Autorisation->retournerAutorisation();
-        $DonneesInjectees['ClubOrigines']=$this->ClubOrigine->retournerClubOrigine();
+        $DonneesInjectees['Statuts']=$this->Statut->retournerStatuts();
+        $DonneesInjectees['ClubOrigines']=$this->ClubOrigine->retournerClubsOrigine();
         $DonneesInjectees['Origines']=$this->Origine->retournerOrigine();
-        $DonneesInjectees['Entites']=$this->Entite->retournerEntite();
-        var_dump($DonneesInjectees['Entites']);
+        $DonneesInjectees['Entites']=$this->Entite->retournerEntites();
         if (empty($DonneesInjectees['unAdherent']))   
         {   
             show_404();   
@@ -128,9 +126,9 @@ class Responsable extends CI_Controller {
                 'GENRE'=> $this->input->post('txtGenre'),
                 'CODEPOSTAL'=> $this->input->post('txtCodePostal'),
                 'NOMDUSAGE'=> $this->input->post('txtNomDUsage'),
-                'NUMEROAUTORISATION'=> $this->input->post('txtAutorisation'),
+                'LIBELLESTATUT'=> $this->input->post('txtStatut'),
                 'NUMEROORIGINE'=> $this->input->post('txtOrigine'),
-                'NUMEROENTITE'=> $this->input->post('txtEntite'),
+                'LIBELLEENTITE'=> $this->input->post('txtEntite'),
                 'VILLENAISSANCE'=> $this->input->post('txtVilleNaissance'),
                 'DEPARTEMENTNAISSANCE'=> $this->input->post('txtDepartementNaissance'),
                 'TELEPHONE'=> $this->input->post('txtTelephone'),
@@ -140,7 +138,7 @@ class Responsable extends CI_Controller {
                 'MOTDEPASSE'=> $this->input->post('txtMotDePasse'),
                 'NUMEROADHERENT_PARENT'=> $this->input->post('txtParent'),
                 'NUMEROADHERENT_COUPLER'=> $this->input->post('txtCouple'),
-                'NUMEROCLUB'=> $this->input->post('txtClubOrigine')
+                'LIBELLECLUB'=> $this->input->post('txtClubOrigine')
             ); // NOM, PRENOM, EMAILPROFESSIONNEL : champs de la table ADHERENT
             $this->Adherent->modifierUnAdherent($donneesAInserer,$NoAdherent); // appel du modèle
             $this->load->view('adherent/modificationReussie');   
@@ -154,7 +152,7 @@ class Responsable extends CI_Controller {
 
     public function afficherLesSections()
     {
-        $DonneesInjectees['lesSections'] = $this->Section->retournerSectionAfficher();
+        $DonneesInjectees['lesSections'] = $this->Section->retournerSection();
         $DonneesInjectees['TitreDeLaPage'] = 'Les Sections';
         $this->load->view('adherent/afficherLesSections', $DonneesInjectees);
         $this->load->view('templates/piedDePage');
@@ -162,9 +160,10 @@ class Responsable extends CI_Controller {
 
     public function afficherUneSection($pNoSection)
     {
-        $DonneesInjectees['UneSection'] = $this->Section->retournerSectionAfficher($pNoSection);
-        $DonneesInjectees['AdherentSection'] = $this->Section->retournerAdherentSection($pNoSection);
-        $DonneesInjectees['TitreDeLaPage'] ="N° section: ".$DonneesInjectees['UneSection']->NUMEROSECTION;
+        $DonneesInjectees['UneSection'] = $this->Section->retournerSection($pNoSection);
+        $DonneesInjectees['AdherentsSection'] = $this->Section->retournerAdherentSection($pNoSection);
+        $DonneesInjectees['GerantsSection'] = $this->Gerer->retournerGerant($pNoSection);
+        $DonneesInjectees['TitreDeLaPage'] ="Section: ".$DonneesInjectees['UneSection']->NUMEROSECTION;
         $this->load->view('adherent/afficherUneSection', $DonneesInjectees);
         $this->load->view('templates/piedDePage');
     } // listerLesProduits

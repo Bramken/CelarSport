@@ -15,7 +15,7 @@
                 echo form_submit(array('type'  => 'submit','name'=>'btnConnecter','value'  => 'Se connecter','title' => 'Cliquer','class' => 'btn btn-success'));
 
                 echo form_close();
-                echo '<p>'.'Vous étes responsable, mais vous n\'avez pas de mot de passe ? Rendez-vous au Celar Sports'.'</p>';
+                echo '<p>'.'Vous étes responsable, mais vous n\'avez pas de mot de passe ? Contacter votre administrateur'.'</p>';
             ?>
         </div>
     </div><br>

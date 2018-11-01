@@ -6,9 +6,6 @@
         <div class="card-body text-center">
             <?php echo form_open('administrateur/ajouterUneSection',array('class' => 'form-control-sm')) ?>
 
-                <label for="txtCategorie">Categorie</label>
-                <input class="form-control" list="categories" type="text" name="txtCategorie" value="<?php echo set_value('txtCategorie'); ?>"><br/>
-
                 <datalist id="adherents">
                     <?php foreach ($LesAdherents as $UnAdherent):
                         echo '<option value="'.$UnAdherent['NUMEROADHERENT'].'">'.$UnAdherent['NOM']." ".$UnAdherent['PRENOM'].'</option>';

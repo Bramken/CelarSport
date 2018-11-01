@@ -35,15 +35,15 @@
                 <label for="txtCodePostal">CodePostal<span class="text-danger">*</span></label>
                 <input class= "form-control" required="required"  title="Code postal pas valide !" placeholder="ex : 35230" pattern="^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$" name="txtCodePostal" value="<?php echo $unAdherent->CODEPOSTAL; ?>" /><br/>
 
-                <label for="txtAutorisation">Autorisations<span class="text-danger">*</span></label><br/>
-                <input class="form-control" list="autorisations" type="text" name="txtAutorisation" value="<?php echo $unAdherent->NUMEROAUTORISATION; ?>"><br/>
+                <label for="txtStatut">Statut<span class="text-danger">*</span></label><br/>
+                <input class="form-control" list="statuts" type="text" name="txtStatut" value="<?php echo $unAdherent->LIBELLESTATUT; ?>"><br/>
 
 
                 <label for="txtOrigine">Origine</label>
                 <input class= "form-control"  list="origines" placeholder=""  name="txtOrigine" value="<?php echo $unAdherent->NUMEROORIGINE; ?>" /><br/>
 
                 <label for="txtEntite">Entité</label>
-                <input class= "form-control" list="entites" type="text" placeholder=""  name="txtEntite" value="<?php echo $unAdherent->NUMEROENTITE; ?>" /><br/>
+                <input class= "form-control" list="entites" type="text" placeholder=""  name="txtEntite" value="<?php echo $unAdherent->LIBELLEENTITE; ?>" /><br/>
 
                 <label for="txtVilleNaissance">Ville de naissance<span class="text-danger">*</span></label>
                 <input class= "form-control" placeholder=""  name="txtVilleNaissance" value="<?php echo $unAdherent->VILLENAISSANCE; ?>" /><br/>
@@ -86,7 +86,7 @@
                 <input class="form-control" list="adherents" type="text" name="txtCouple" value="<?php echo $unAdherent->NUMEROADHERENT_COUPLER; ?>"><br/>
                 
                 <label for="txtClubOrigine">Club d'origine</label>
-                <input class= "form-control" list="cluborigines" name="txtClubOrigine" value="<?php echo $unAdherent->NUMEROCLUB; ?>" /><br/>
+                <input class= "form-control" list="clubsorigine" name="txtClubOrigine" value="<?php echo $unAdherent->LIBELLECLUB; ?>" /><br/>
 
                 <datalist id="adherents">
                     <?php foreach ($LesAdherents as $UnAdherent):
@@ -94,20 +94,21 @@
                     endforeach;?> 
                 </datalist>
 
-                <datalist id="autorisations">
-                    <?php foreach ($Autorisations as $UneAutorisation):
-                        echo '<option'; 
-                        if($unAdherent->NUMEROAUTORISATION==$UneAutorisation['NUMEROAUTORISATION'])
+                <datalist id="statuts">
+                    <?php foreach ($Statuts as $UnStatut):
+                        echo '<option '; 
+                        if($unAdherent->LIBELLESTATUT==$UnStatut['LIBELLESTATUT'])
                         {
                             echo ' selected="selected"';
                         } 
-                        echo 'value="'.$UneAutorisation['NUMEROAUTORISATION'].'">'.$UneAutorisation['LIBELLEAUTORISATION'].'</option>';
+                        //echo 'value="'.$UnStatut['LIBELLESTATUT'].'">'.$UnStatut['LIBELLESTATUT'].'</option>';
+                        echo 'value="'.$UnStatut['LIBELLESTATUT'].'"></option>';
                     endforeach;?> 
                 </datalist>
 
-                <datalist id="cluborigines">
-                    <?php foreach ($ClubOrigines as $UnClubOrigine):
-                        echo '<option value="'.$UnClubOrigine['NUMEROCLUB'].'">'.$UnClubOrigine['LIBELLECLUB'].'</option>';
+                <datalist id="clubsorigine">
+                    <?php foreach ($ClubsOrigine as $UnClubOrigine):
+                        echo '<option value="'.$UnClubOrigine['LIBELLECLUB'].'">'.$UnClubOrigine['LIBELLECLUB'].'</option>';
                     endforeach;?> 
                 </datalist>
 

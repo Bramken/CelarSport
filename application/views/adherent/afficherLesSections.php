@@ -7,8 +7,6 @@
             <table class="table table-striped table-bordered text-center">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">n° de section</th>
-                        <th scope="col">categorie</th>
                         <th scope="col">section</th>
                         <th scope="col">code federation</th>
                     </tr>
@@ -16,9 +14,7 @@
                 <tbody>
                     <?php foreach ($lesSections as $uneSection):
                         echo '<tr>
-                            <td>'.anchor('responsable/afficherUneSection/'.$uneSection['NUMEROSECTION'],$uneSection['NUMEROSECTION']).'</td>
-                            <td>'.$uneSection['LIBELLECATEGORIE'].'</td>                         
-                            <td>'.$uneSection['LIBELLESECTION'].'</td>
+                            <td>'.anchor('responsable/afficherUneSection/'.$uneSection['NUMEROSECTION'],$uneSection['LIBELLESECTION']).'</td>                         
                             <td>'.$uneSection['CODEFEDERATION'].'</td>
                         </tr>';
                     endforeach ?>

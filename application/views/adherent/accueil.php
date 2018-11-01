@@ -22,7 +22,7 @@
 								<a href="<?php echo site_url('responsable/modifierAdherent/'.$unAdherent->NUMEROADHERENT)?>" class="btn btn-secondary">Modifier</a>
 							</div>
 							<div class="col">
-								<p class="card-text">Statut : <?php echo $Autorisation->LIBELLEAUTORISATION;?></p>
+								<p class="card-text">Statut : <?php echo $unAdherent->LIBELLESTATUT;?></p>
 								<p class="card-text">Email : <?php echo $unAdherent->EMAILEXTERIEUR;?></p>
 								<p class="card-text">Carte : <?php echo $unAdherent->DATEEDITIONCARTE;?></p>
 							</div>
